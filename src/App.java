@@ -1,16 +1,22 @@
 import automaton.Automaton;
+import java.util.Scanner;
 
 public class App {
     public static void main (String[]args){
 		
 		Automaton res;
-		if(args.length==0) {
-			System.out.println("Chemin du fichier de l'automate a tester attendu sur la ligne de commande");
-		}
-		for(int i=0;i<args.length;i++){
-			System.out.println("Chaıne testee:"+args[i]);
-			res= new Automaton(args[0]);
+		String filepath;
+		Scanner scan = new Scanner(System.in);
+
+		System.out.println("Chemin du fichier de l'automate : ");
+		filepath = scan.next();
+
+		try {
+			res= new Automaton(filepath);
 			res.afficherAutomate();
+		} catch (Exception e) {
+			System.err.println("Fichier non valide");
 		}
+		
 	}
 }
